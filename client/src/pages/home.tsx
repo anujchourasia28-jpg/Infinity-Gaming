@@ -58,7 +58,7 @@ export default function Home() {
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-lg">
-              Experience the infinite. Elevate your gameplay at Infinity Gaming Bhopal, the city's premier high-performance arena. Where every frame counts and the grind never stops.
+              Experience the infinite. Elevate your gameplay at Infinity Gaming Bhopal, the city's premier high-performance arena located in the heart of MP Nagar, Zone-II. Designed for the hardcore elite and the casual squad alike. Where every frame counts and the grind never stops.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -175,11 +175,20 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="text-lg font-bold text-white mb-1">Sector / Zone</h4>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground mb-3">
                     Infinity Gaming Bhopal<br/>
                     Heart of MP Nagar, Zone-II<br/>
-                    Specialized Basement Sanctuary
+                    Specialized Basement Sanctuary<br/>
+                    <span className="text-xs text-primary/70">Coordinates: 23.2329°N, 77.4364°E</span>
                   </p>
+                  <a 
+                    href="https://maps.google.com/?q=23.2329133,77.4364161" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:text-primary/80 text-sm font-display uppercase tracking-wider transition-colors"
+                  >
+                    Get Directions →
+                  </a>
                 </div>
               </div>
 
