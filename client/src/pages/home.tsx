@@ -216,8 +216,8 @@ export default function Home() {
             >
               <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-cyan mb-8">
                 <img 
-                  src="https://images.unsplash.com/photo-1538481143235-405ba7fa84a6?w=500&q=80&fit=crop" 
-                  alt="Gaming titles" 
+                  src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=500&q=80&fit=crop" 
+                  alt="Gaming titles and arcade machines" 
                   className="w-full h-80 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent" />
