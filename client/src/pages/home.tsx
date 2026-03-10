@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { MonitorPlay, Gamepad2, Zap, Clock, MapPin, ChevronRight, Cpu } from "lucide-react";
+import { MonitorPlay, Gamepad2, Zap, Clock, MapPin, ChevronRight, Cpu, MessageCircle, Joystick } from "lucide-react";
 import { api, type InquiryInput } from "@shared/routes";
 import { useCreateInquiry } from "@/hooks/use-inquiries";
 import { CyberButton } from "@/components/ui/cyber-button";
@@ -25,9 +25,12 @@ export default function Home() {
           <div className="hidden md:flex items-center gap-8 font-display text-sm uppercase tracking-wider">
             <a href="#arena" className="hover:text-primary transition-colors">The Arena</a>
             <a href="#arsenal" className="hover:text-primary transition-colors">Arsenal</a>
+            <a href="#games" className="hover:text-primary transition-colors">Games</a>
             <a href="#intel" className="hover:text-primary transition-colors">Intel</a>
-            <a href="#book" className="hover:text-primary transition-colors">
-              <CyberButton className="px-4 py-2 text-xs">Deploy Now</CyberButton>
+            <a href="https://wa.me/917067601040?text=Hi%20Infinity%20Gaming%2C%20I%20would%20like%20to%20book%20a%20gaming%20session" target="_blank" rel="noopener noreferrer">
+              <CyberButton className="px-4 py-2 text-xs flex items-center gap-2">
+                <MessageCircle className="w-4 h-4" /> Chat Now
+              </CyberButton>
             </a>
           </div>
         </div>
@@ -85,7 +88,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
               {/* gaming setup glowing dark room */}
               <img 
-                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80&fit=crop" 
+                src="https://images.unsplash.com/photo-1587829191301-42d9f82f0e2e?w=800&q=80&fit=crop" 
                 alt="High performance gaming setup" 
                 className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
               />
@@ -149,6 +152,104 @@ export default function Home() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Consoles & Games Section */}
+      <section id="games" className="py-24 relative bg-background">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-display font-bold uppercase mb-4">
+              Available <span className="text-accent text-glow-cyan">Hardware</span> & <span className="text-secondary">Titles</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Premium gaming rigs and the latest consoles equipped with blockbuster titles and competitive esports games.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Consoles */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-purple mb-8">
+                <img 
+                  src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=500&q=80&fit=crop" 
+                  alt="Gaming consoles" 
+                  className="w-full h-80 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent" />
+              </div>
+              <h3 className="text-2xl font-display font-bold uppercase mb-6 flex items-center gap-2">
+                <Joystick className="text-secondary" /> Premium Hardware
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { name: "PlayStation 5", specs: "4K @ 120fps, Ultimate Gaming" },
+                  { name: "Xbox Series X", specs: "4K HDR, Gamepass Ready" },
+                  { name: "High-End Gaming PCs", specs: "RTX 4080 Ti, i9-13900K, 32GB RAM" },
+                  { name: "Nintendo Switch Pro", specs: "Portable Gaming Excellence" }
+                ].map((console, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="p-4 rounded-lg bg-card border border-border/50 hover:border-secondary/50 transition-colors"
+                  >
+                    <h4 className="font-display font-bold text-white text-sm mb-1">{console.name}</h4>
+                    <p className="text-xs text-muted-foreground">{console.specs}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Games */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-cyan mb-8">
+                <img 
+                  src="https://images.unsplash.com/photo-1538481143235-405ba7fa84a6?w=500&q=80&fit=crop" 
+                  alt="Gaming titles" 
+                  className="w-full h-80 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent" />
+              </div>
+              <h3 className="text-2xl font-display font-bold uppercase mb-6 flex items-center gap-2">
+                <Zap className="text-primary" /> Featured Titles
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { title: "Call of Duty MW3", genre: "FPS • Competitive" },
+                  { title: "Counter-Strike 2", genre: "Tactical Shooter" },
+                  { title: "Valorant", genre: "Competitive FPS" },
+                  { title: "Cyberpunk 2077", genre: "Action RPG" },
+                  { title: "Elden Ring", genre: "Action RPG" },
+                  { title: "Fortnite Battle Royale", genre: "BR • Esports" },
+                  { title: "Palworld", genre: "Adventure • Multiplayer" },
+                  { title: "Street Fighter 6", genre: "Fighting • Arcade" }
+                ].map((game, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="p-4 rounded-lg bg-card border border-border/50 hover:border-primary/50 transition-colors"
+                  >
+                    <h4 className="font-display font-bold text-white text-sm mb-1">{game.title}</h4>
+                    <p className="text-xs text-muted-foreground">{game.genre}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -228,10 +329,22 @@ export default function Home() {
               </div>
               
               <h3 className="text-2xl font-display font-bold uppercase mb-6 flex items-center gap-2">
-                <span className="w-2 h-6 bg-primary block" /> Request Deployment
+                <span className="w-2 h-6 bg-primary block" /> Book Your Session
               </h3>
 
               <InquiryForm />
+
+              <div className="mt-6 pt-6 border-t border-border/50">
+                <p className="text-xs text-muted-foreground mb-4">Prefer instant messaging?</p>
+                <a 
+                  href="https://wa.me/917067601040?text=Hi%20Infinity%20Gaming%2C%20I%20would%20like%20to%20know%20more%20about%20available%20slots" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20 transition-colors text-sm font-display"
+                >
+                  <MessageCircle className="w-4 h-4" /> Chat on WhatsApp
+                </a>
+              </div>
             </div>
           </motion.div>
 
@@ -239,10 +352,50 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 border-t border-border/50 bg-background text-center">
-        <p className="text-sm text-muted-foreground font-display tracking-widest uppercase">
-          © {new Date().getFullYear()} Infinity Gaming Bhopal. All systems nominal.
-        </p>
+      <footer className="py-12 border-t border-border/50 bg-background">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <h4 className="font-display font-bold text-white uppercase mb-3">Contact</h4>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p className="flex items-center gap-2">
+                  <Zap className="w-4 h-4 text-primary" />
+                  <a href="tel:07067601040" className="hover:text-primary transition-colors">+91 7067601040</a>
+                </p>
+                <p className="flex items-center gap-2">
+                  <MessageCircle className="w-4 h-4 text-primary" />
+                  <a href="https://wa.me/917067601040" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">WhatsApp Message</a>
+                </p>
+                <p className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-primary" />
+                  <span>MP Nagar, Zone-II, Bhopal</span>
+                </p>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-display font-bold text-white uppercase mb-3">Hours</h4>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p>Open Daily</p>
+                <p className="text-primary font-bold">10:00 AM — 11:00 PM</p>
+                <p className="text-xs">Walk-ins Welcome</p>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-display font-bold text-white uppercase mb-3">Quick Links</h4>
+              <div className="space-y-2 text-sm">
+                <a href="#arena" className="text-muted-foreground hover:text-primary transition-colors block">The Arena</a>
+                <a href="#arsenal" className="text-muted-foreground hover:text-primary transition-colors block">Arsenal</a>
+                <a href="#games" className="text-muted-foreground hover:text-primary transition-colors block">Games & Hardware</a>
+                <a href="#book" className="text-muted-foreground hover:text-primary transition-colors block">Book Now</a>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-border/50 pt-8 text-center">
+            <p className="text-sm text-muted-foreground font-display tracking-widest uppercase">
+              © {new Date().getFullYear()} Infinity Gaming Bhopal. All systems nominal.
+            </p>
+          </div>
+        </div>
       </footer>
     </div>
   );
