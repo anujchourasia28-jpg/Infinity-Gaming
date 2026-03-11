@@ -82,14 +82,13 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative hidden lg:block"
           >
-            <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-cyan group">
+            <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-cyan group bg-gradient-to-br from-slate-800 to-slate-900">
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
               {/* gaming setup glowing dark room */}
               <img 
                 src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000&q=80&fit=crop" 
                 alt="Professional gaming setup with RGB lighting" 
                 className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
-                onError={(e) => {e.target.style.background = 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)'}}
               />
               <div className="absolute bottom-6 left-6 z-20 flex items-center gap-4">
                 <div className="bg-background/80 backdrop-blur border border-border p-3 rounded-lg flex items-center gap-3">
@@ -174,12 +173,11 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-purple mb-8">
+              <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-purple mb-8 bg-gradient-to-br from-purple-600 to-purple-900">
                 <img 
                   src="https://images.unsplash.com/photo-1538481143235-405ba7fa84a6?w=600&h=400&fit=crop" 
                   alt="Gaming consoles collection" 
                   className="w-full h-80 object-cover"
-                  onError={(e) => {e.target.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent" />
               </div>
@@ -214,12 +212,11 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-cyan mb-8">
+              <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-cyan mb-8 bg-gradient-to-br from-cyan-500 to-blue-700">
                 <img 
                   src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&h=400&fit=crop" 
                   alt="Gaming setup and arcade machines" 
                   className="w-full h-80 object-cover"
-                  onError={(e) => {e.target.style.background = 'linear-gradient(135deg, #00d4ff 0%, #0099ff 100%)'}}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent" />
               </div>
