@@ -63,11 +63,6 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <a href="#book">
-                <CyberButton>
-                  Secure Your Rig <ChevronRight className="w-5 h-5" />
-                </CyberButton>
-              </a>
               <a href="#intel">
                 <CyberButton variant="outline">
                   View Coordinates
