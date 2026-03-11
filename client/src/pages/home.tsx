@@ -86,9 +86,10 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
               {/* gaming setup glowing dark room */}
               <img 
-                src="https://images.unsplash.com/photo-1551103782-8ab07aff4e76?w=800&q=80&fit=crop" 
-                alt="Gaming PC setup with mechanical keyboard and gaming mouse" 
+                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000&q=80&fit=crop" 
+                alt="Professional gaming setup with RGB lighting" 
                 className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
+                onError={(e) => {e.target.style.background = 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)'}}
               />
               <div className="absolute bottom-6 left-6 z-20 flex items-center gap-4">
                 <div className="bg-background/80 backdrop-blur border border-border p-3 rounded-lg flex items-center gap-3">
@@ -175,9 +176,10 @@ export default function Home() {
             >
               <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-purple mb-8">
                 <img 
-                  src="https://images.unsplash.com/photo-1606941614221-6a55b8a44c1f?w=500&q=80&fit=crop" 
-                  alt="PlayStation 5 console with controller" 
+                  src="https://images.unsplash.com/photo-1538481143235-405ba7fa84a6?w=600&h=400&fit=crop" 
+                  alt="Gaming consoles collection" 
                   className="w-full h-80 object-cover"
+                  onError={(e) => {e.target.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent" />
               </div>
@@ -214,9 +216,10 @@ export default function Home() {
             >
               <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-cyan mb-8">
                 <img 
-                  src="https://images.unsplash.com/photo-1593642632823-8f7843221a76?w=500&q=80&fit=crop" 
-                  alt="Xbox Series X console and gaming" 
+                  src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&h=400&fit=crop" 
+                  alt="Gaming setup and arcade machines" 
                   className="w-full h-80 object-cover"
+                  onError={(e) => {e.target.style.background = 'linear-gradient(135deg, #00d4ff 0%, #0099ff 100%)'}}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent" />
               </div>
