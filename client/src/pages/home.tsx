@@ -82,14 +82,13 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative hidden lg:block"
           >
-            <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-cyan group bg-gradient-to-br from-slate-800 to-slate-900">
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
-              {/* gaming setup glowing dark room */}
-              <img 
-                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000&q=80&fit=crop" 
-                alt="Professional gaming setup with RGB lighting" 
-                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
-              />
+            <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-cyan group bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 min-h-96 flex items-center justify-center">
+              <div className="text-center z-10">
+                <MonitorPlay className="w-24 h-24 text-cyan-300 mx-auto mb-6 opacity-60" />
+                <p className="text-cyan-200 font-display uppercase tracking-widest text-xl">Pro Gaming Setup</p>
+                <p className="text-slate-400 text-sm mt-2">High-Performance PC Rigs</p>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-5" />
               <div className="absolute bottom-6 left-6 z-20 flex items-center gap-4">
                 <div className="bg-background/80 backdrop-blur border border-border p-3 rounded-lg flex items-center gap-3">
                   <Cpu className="text-primary w-6 h-6" />
@@ -173,12 +172,11 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-purple mb-8 bg-gradient-to-br from-purple-600 to-purple-900">
-                <img 
-                  src="https://images.unsplash.com/photo-1538481143235-405ba7fa84a6?w=600&h=400&fit=crop" 
-                  alt="Gaming consoles collection" 
-                  className="w-full h-80 object-cover"
-                />
+              <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-purple mb-8 bg-gradient-to-br from-purple-600 to-purple-900 h-80 flex items-center justify-center">
+                <div className="text-center">
+                  <Joystick className="w-20 h-20 text-purple-200 mx-auto mb-4 opacity-50" />
+                  <p className="text-purple-200 font-display uppercase tracking-wider">PlayStation • Xbox • Nintendo</p>
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent" />
               </div>
               <h3 className="text-2xl font-display font-bold uppercase mb-6 flex items-center gap-2">
@@ -212,12 +210,11 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-cyan mb-8 bg-gradient-to-br from-cyan-500 to-blue-700">
-                <img 
-                  src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&h=400&fit=crop" 
-                  alt="Gaming setup and arcade machines" 
-                  className="w-full h-80 object-cover"
-                />
+              <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-cyan mb-8 bg-gradient-to-br from-cyan-500 to-blue-700 h-80 flex items-center justify-center">
+                <div className="text-center">
+                  <Zap className="w-20 h-20 text-cyan-200 mx-auto mb-4 opacity-50" />
+                  <p className="text-cyan-200 font-display uppercase tracking-wider">AAA Titles • Esports • Multiplayer</p>
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent" />
               </div>
               <h3 className="text-2xl font-display font-bold uppercase mb-6 flex items-center gap-2">
