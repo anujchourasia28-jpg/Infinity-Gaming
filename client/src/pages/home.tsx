@@ -63,6 +63,11 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap gap-4">
+              <a href="https://wa.me/917067601040" target="_blank" rel="noopener noreferrer">
+                <CyberButton>
+                  Contact Us <MessageCircle className="w-5 h-5" />
+                </CyberButton>
+              </a>
               <a href="#intel">
                 <CyberButton variant="outline">
                   View Coordinates
