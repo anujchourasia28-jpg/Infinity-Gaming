@@ -86,8 +86,8 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
               {/* gaming setup glowing dark room */}
               <img 
-                src="https://images.unsplash.com/photo-1491889556428-1b1a8f3a4c04?w=800&q=80&fit=crop" 
-                alt="High performance gaming setup with RGB lighting" 
+                src="https://images.unsplash.com/photo-1551103782-8ab07aff4e76?w=800&q=80&fit=crop" 
+                alt="Gaming PC setup with mechanical keyboard and gaming mouse" 
                 className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute bottom-6 left-6 z-20 flex items-center gap-4">
@@ -175,8 +175,8 @@ export default function Home() {
             >
               <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-purple mb-8">
                 <img 
-                  src="https://images.unsplash.com/photo-1559163615-cd4628902d4a?w=500&q=80&fit=crop" 
-                  alt="PlayStation 5 and Xbox consoles" 
+                  src="https://images.unsplash.com/photo-1606941614221-6a55b8a44c1f?w=500&q=80&fit=crop" 
+                  alt="PlayStation 5 console with controller" 
                   className="w-full h-80 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent" />
@@ -214,8 +214,8 @@ export default function Home() {
             >
               <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-cyan mb-8">
                 <img 
-                  src="https://images.unsplash.com/photo-1511707267537-b85faf00021e?w=500&q=80&fit=crop" 
-                  alt="Gaming PC and gaming setup" 
+                  src="https://images.unsplash.com/photo-1593642632823-8f7843221a76?w=500&q=80&fit=crop" 
+                  alt="Xbox Series X console and gaming" 
                   className="w-full h-80 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent" />
