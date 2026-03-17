@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { MonitorPlay, Gamepad2, Zap, Clock, MapPin, MessageCircle, Cpu, Joystick, CalendarCheck, User, Phone, Timer, Layers } from "lucide-react";
+import { SiInstagram, SiWhatsapp } from "react-icons/si";
 import { CyberButton } from "@/components/ui/cyber-button";
 import { ChatBot } from "@/components/ChatBot";
 import logo from "@assets/412440818_1497304187730392_8931419891419857132_n_1773216482149.jpg";
@@ -620,16 +621,26 @@ export default function Home() {
               <h3 className="text-xl font-display font-bold text-white mb-2">Contact</h3>
               <p className="text-muted-foreground text-sm mb-4">
                 <a href="tel:07067601040" className="text-primary hover:text-primary/80 font-bold block mb-2">+91 7067601040</a>
-                <span className="text-xs">Call or WhatsApp us</span>
+                <span className="text-xs">Call, WhatsApp, or DM us</span>
               </p>
-              <a
-                href="https://wa.me/917067601040"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:text-primary/80 text-sm font-display uppercase tracking-wider transition-colors"
-              >
-                Message on WhatsApp →
-              </a>
+              <div className="flex flex-col gap-2">
+                <a
+                  href="https://wa.me/917067601040"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-green-400 hover:text-green-300 text-sm font-display uppercase tracking-wider transition-colors"
+                >
+                  <SiWhatsapp className="w-4 h-4" /> WhatsApp →
+                </a>
+                <a
+                  href="https://www.instagram.com/infinitygamingbhopal/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-pink-400 hover:text-pink-300 text-sm font-display uppercase tracking-wider transition-colors"
+                >
+                  <SiInstagram className="w-4 h-4" /> Instagram →
+                </a>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -640,7 +651,27 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-12 border-t border-border/50 bg-background">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-5">
+          <div className="flex items-center gap-5">
+            <a
+              href="https://wa.me/917067601040"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-green-400 hover:border-green-400 hover:bg-green-400/10 transition-colors"
+            >
+              <SiWhatsapp className="w-5 h-5" />
+            </a>
+            <a
+              href="https://www.instagram.com/infinitygamingbhopal/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-pink-400 hover:border-pink-400 hover:bg-pink-400/10 transition-colors"
+            >
+              <SiInstagram className="w-5 h-5" />
+            </a>
+          </div>
           <p className="text-sm text-muted-foreground font-display tracking-widest uppercase">
             © {new Date().getFullYear()} Infinity Gaming Bhopal. All systems nominal.
           </p>
