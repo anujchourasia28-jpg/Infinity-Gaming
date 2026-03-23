@@ -1,0 +1,23 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GamingCenter",
+  "name": "Infinity Gaming",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "R-1, SBI Colony, Under IDBI Bank, Near Anand Namkin, MP Nagar Zone 1",
+    "addressLocality": "Bhopal",
+    "addressRegion": "MP",
+    "postalCode": "462023",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "23.2325", 
+    "longitude": "77.4294"
+  },
+  "openingHours": "Mo-Su 10:00-23:00",
+  "priceRange": "$",
+  "telephone": "+91-7067601040"
+}
+</script>
