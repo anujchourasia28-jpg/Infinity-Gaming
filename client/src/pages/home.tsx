@@ -1,14 +1,277 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MonitorPlay, Gamepad2, Zap, Clock, MapPin, MessageCircle, Cpu, Joystick, CalendarCheck, User, Phone, Timer, Layers } from "lucide-react";
-import { SiInstagram, SiWhatsapp } from "react-icons/si";
+import {
+  MonitorPlay, Gamepad2, Zap, Clock, MapPin, MessageCircle, Cpu,
+  Joystick, CalendarCheck, User, Phone, Timer, Layers, IndianRupee,
+  Users, Film, Bike, Eye, Target
+} from "lucide-react";
+import { SiInstagram, SiWhatsapp, SiPlaystation } from "react-icons/si";
 import { CyberButton } from "@/components/ui/cyber-button";
 import { ChatBot } from "@/components/ChatBot";
 import logo from "@assets/412440818_1497304187730392_8931419891419857132_n_1773216482149.jpg";
 
-const PLATFORMS = ["Gaming PC (RTX 4080)", "PlayStation 5", "Xbox Series X", "Nintendo Switch"];
-const TIME_SLOTS = ["10:00 AM – 12:00 PM", "12:00 PM – 02:00 PM", "02:00 PM – 04:00 PM", "04:00 PM – 06:00 PM", "06:00 PM – 08:00 PM", "08:00 PM – 11:00 PM"];
+const PLATFORMS = [
+  "PlayStation 5",
+  "PC Gaming",
+  "Racing Simulator",
+  "VR Cricket",
+  "Pool Table",
+  "Gaming Room (Private)",
+];
+const TIME_SLOTS = [
+  "10:00 AM – 12:00 PM",
+  "12:00 PM – 02:00 PM",
+  "02:00 PM – 04:00 PM",
+  "04:00 PM – 06:00 PM",
+  "06:00 PM – 08:00 PM",
+  "08:00 PM – 11:00 PM",
+];
 const DURATIONS = ["1 Hour", "2 Hours", "3 Hours", "4 Hours", "Full Session (5+ hrs)"];
+
+const PRICING = [
+  {
+    icon: <SiPlaystation className="w-8 h-8" />,
+    label: "PS5 Gaming",
+    color: "cyan",
+    borderHover: "hover:border-primary/60",
+    glowColor: "bg-primary/5",
+    iconColor: "text-primary",
+    rates: [
+      { desc: "1 Player", price: "₹100 / hr" },
+      { desc: "2 Players", price: "₹150 / hr" },
+      { desc: "3 Players", price: "₹200 / hr" },
+      { desc: "4 Players", price: "₹250 / hr" },
+    ],
+  },
+  {
+    icon: <MonitorPlay className="w-8 h-8" />,
+    label: "PC Gaming",
+    color: "purple",
+    borderHover: "hover:border-secondary/60",
+    glowColor: "bg-secondary/5",
+    iconColor: "text-secondary",
+    rates: [{ desc: "1 Hour", price: "₹100 / hr" }],
+  },
+  {
+    icon: <Bike className="w-8 h-8" />,
+    label: "Racing Simulator",
+    color: "pink",
+    borderHover: "hover:border-accent/60",
+    glowColor: "bg-accent/5",
+    iconColor: "text-accent",
+    rates: [{ desc: "1 Hour", price: "₹300 / hr" }],
+  },
+  {
+    icon: <Eye className="w-8 h-8" />,
+    label: "VR Cricket",
+    color: "cyan",
+    borderHover: "hover:border-primary/60",
+    glowColor: "bg-primary/5",
+    iconColor: "text-primary",
+    rates: [
+      { desc: "15 Minutes", price: "₹100" },
+      { desc: "1 Hour", price: "₹300" },
+    ],
+  },
+  {
+    icon: <Target className="w-8 h-8" />,
+    label: "Pool Table",
+    color: "purple",
+    borderHover: "hover:border-secondary/60",
+    glowColor: "bg-secondary/5",
+    iconColor: "text-secondary",
+    rates: [{ desc: "1 Hour", price: "₹150 / hr" }],
+  },
+  {
+    icon: <Film className="w-8 h-8" />,
+    label: "Gaming Room (Private)",
+    color: "pink",
+    borderHover: "hover:border-accent/60",
+    glowColor: "bg-accent/5",
+    iconColor: "text-accent",
+    rates: [
+      { desc: "1 Hour", price: "₹300 / hr" },
+      { desc: "Movie Screening", price: "₹500 / film" },
+    ],
+  },
+];
+
+const SINGLE_PLAYER_GAMES = [
+  "GTA 5",
+  "Spider-Man: Miles Morales",
+  "Uncharted",
+  "God of War",
+  "Assassin's Creed Valhalla",
+  "Assassin's Creed Odyssey",
+  "The Last of Us Part 1",
+  "The Last of Us Part 2",
+  "Ghost of Tsushima",
+  "Ghost of Yōtei",
+  "Call of Duty MW1",
+  "Call of Duty MW3",
+  "Resident Evil Village",
+  "Warhammer: Space Marine 2",
+];
+
+const TWO_PLAYER_GAMES = [
+  "Mortal Kombat",
+  "Tekken 8",
+  "Jump Force",
+  "NBA 2K26",
+  "WWE",
+  "A Way Out",
+  "It Takes Two",
+  "Split Fiction",
+  "Gears of War",
+  "Dragon Ball FighterZ",
+  "Dirt 5",
+  "Asphalt",
+  "Rocket League",
+];
+
+const MULTIPLAYER_GAMES = [
+  "FC 26",
+  "NBA 2K26",
+  "WWE",
+  "Call of Duty: Black Ops 3",
+  "Call of Duty: Black Ops 4",
+  "Asphalt",
+  "Dirt 5",
+  "Rocket League",
+];
+
+function PricingSection() {
+  return (
+    <section id="pricing" className="py-24 relative bg-background">
+      <div className="absolute top-0 right-0 w-[500px] h-[300px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-secondary/30 bg-secondary/5 text-secondary text-xs font-display uppercase tracking-widest mb-4">
+            <IndianRupee className="w-3 h-3" /> Transparent Pricing
+          </div>
+          <h2 className="text-3xl md:text-5xl font-display font-bold uppercase mb-4">
+            Our <span className="text-secondary text-glow-purple">Rates</span>
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Affordable pricing across all platforms and experiences. No hidden charges — just pure gaming.
+          </p>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {PRICING.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className={`group relative p-6 rounded-2xl bg-card border border-border ${item.borderHover} transition-colors overflow-hidden`}
+            >
+              <div className={`absolute inset-0 ${item.glowColor} opacity-0 group-hover:opacity-100 transition-opacity`} />
+              <div className="relative z-10">
+                <div className={`${item.iconColor} mb-4`}>{item.icon}</div>
+                <h3 className="text-lg font-display font-bold text-white mb-4 uppercase tracking-wide">
+                  {item.label}
+                </h3>
+                <div className="space-y-3">
+                  {item.rates.map((rate, j) => (
+                    <div key={j} className="flex items-center justify-between">
+                      <span className="text-sm text-muted-foreground flex items-center gap-2">
+                        <Users className="w-3 h-3 shrink-0" /> {rate.desc}
+                      </span>
+                      <span className={`font-display font-bold text-sm ${item.iconColor}`}>
+                        {rate.price}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function GamesSection() {
+  const [tab, setTab] = useState<"single" | "two" | "multi">("single");
+
+  const tabs = [
+    { key: "single", label: "Single Player", games: SINGLE_PLAYER_GAMES },
+    { key: "two", label: "2 Player", games: TWO_PLAYER_GAMES },
+    { key: "multi", label: "Multiplayer", games: MULTIPLAYER_GAMES },
+  ] as const;
+
+  const active = tabs.find(t => t.key === tab)!;
+
+  return (
+    <section id="games" className="py-24 relative bg-card/30 border-y border-border/50">
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-5xl font-display font-bold uppercase mb-4">
+            Game <span className="text-accent text-glow-cyan">Library</span>
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Over 35 top titles across all genres — solo campaigns, couch co-op, and full multiplayer squads.
+          </p>
+        </motion.div>
+
+        {/* Tab Switcher */}
+        <div className="flex justify-center mb-10">
+          <div className="inline-flex rounded-xl border border-border bg-card p-1 gap-1">
+            {tabs.map(t => (
+              <button
+                key={t.key}
+                data-testid={`tab-${t.key}`}
+                onClick={() => setTab(t.key)}
+                className={`px-5 py-2 rounded-lg font-display text-sm uppercase tracking-wider transition-all ${
+                  tab === t.key
+                    ? "bg-primary text-primary-foreground shadow"
+                    : "text-muted-foreground hover:text-white"
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Games Grid */}
+        <motion.div
+          key={tab}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"
+        >
+          {active.games.map((game, i) => (
+            <motion.div
+              key={game}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.04 }}
+              className="p-4 rounded-xl bg-background border border-border hover:border-primary/50 hover:bg-primary/5 transition-all group cursor-default"
+            >
+              <Gamepad2 className="w-4 h-4 text-primary mb-2 opacity-60 group-hover:opacity-100 transition-opacity" />
+              <p className="text-sm font-display font-bold text-white leading-snug">{game}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
 
 function BookingSection() {
   const [form, setForm] = useState({
@@ -55,7 +318,7 @@ function BookingSection() {
       `📱 *Phone:* +91 ${form.phone}`,
       `📅 *Date:* ${form.date}`,
       `⏰ *Time Slot:* ${form.timeSlot}`,
-      `🕹️ *Platform:* ${form.platform}`,
+      `🕹️ *Platform/Experience:* ${form.platform}`,
       `🎯 *Game:* ${form.game || "Any / Open to suggestions"}`,
       `⏱️ *Duration:* ${form.duration}`,
       `📝 *Notes:* ${form.notes || "None"}`,
@@ -77,7 +340,7 @@ function BookingSection() {
   const today = new Date().toISOString().split("T")[0];
 
   return (
-    <section id="book" className="py-24 relative bg-card/30 border-y border-border/50">
+    <section id="book" className="py-24 relative bg-background border-y border-border/50">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="max-w-4xl mx-auto px-6 relative z-10">
         <motion.div
@@ -111,11 +374,7 @@ function BookingSection() {
               Your WhatsApp just opened with your booking details. Send the message and we'll confirm your slot shortly.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <a
-                href="https://wa.me/917067601040"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="https://wa.me/917067601040" target="_blank" rel="noopener noreferrer">
                 <CyberButton>
                   Open WhatsApp <MessageCircle className="w-4 h-4" />
                 </CyberButton>
@@ -134,9 +393,8 @@ function BookingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             onSubmit={handleSubmit}
-            className="rounded-2xl bg-background border border-border/70 p-8 md:p-10 space-y-6"
+            className="rounded-2xl bg-card border border-border/70 p-8 md:p-10 space-y-6"
           >
-            {/* Row 1 — Name & Phone */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-xs font-display uppercase tracking-widest text-muted-foreground mb-2">
@@ -149,7 +407,7 @@ function BookingSection() {
                   value={form.name}
                   onChange={handleChange}
                   placeholder="Your name"
-                  className={`w-full bg-card border rounded-lg px-4 py-3 text-white text-sm placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-primary ${errors.name ? "border-red-500/70" : "border-border"}`}
+                  className={`w-full bg-background border rounded-lg px-4 py-3 text-white text-sm placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-primary ${errors.name ? "border-red-500/70" : "border-border"}`}
                 />
                 {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
               </div>
@@ -158,7 +416,7 @@ function BookingSection() {
                   <Phone className="w-3 h-3 inline mr-1" /> Phone Number *
                 </label>
                 <div className="flex">
-                  <span className="flex items-center px-3 bg-card border border-r-0 border-border rounded-l-lg text-muted-foreground text-sm">+91</span>
+                  <span className="flex items-center px-3 bg-background border border-r-0 border-border rounded-l-lg text-muted-foreground text-sm">+91</span>
                   <input
                     data-testid="input-phone"
                     type="tel"
@@ -167,14 +425,13 @@ function BookingSection() {
                     onChange={handleChange}
                     placeholder="10-digit number"
                     maxLength={10}
-                    className={`w-full bg-card border rounded-r-lg px-4 py-3 text-white text-sm placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-primary ${errors.phone ? "border-red-500/70" : "border-border"}`}
+                    className={`w-full bg-background border rounded-r-lg px-4 py-3 text-white text-sm placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-primary ${errors.phone ? "border-red-500/70" : "border-border"}`}
                   />
                 </div>
                 {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
               </div>
             </div>
 
-            {/* Row 2 — Date & Time */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-xs font-display uppercase tracking-widest text-muted-foreground mb-2">
@@ -187,7 +444,7 @@ function BookingSection() {
                   value={form.date}
                   min={today}
                   onChange={handleChange}
-                  className={`w-full bg-card border rounded-lg px-4 py-3 text-white text-sm outline-none transition-colors focus:border-primary [color-scheme:dark] ${errors.date ? "border-red-500/70" : "border-border"}`}
+                  className={`w-full bg-background border rounded-lg px-4 py-3 text-white text-sm outline-none transition-colors focus:border-primary [color-scheme:dark] ${errors.date ? "border-red-500/70" : "border-border"}`}
                 />
                 {errors.date && <p className="text-red-400 text-xs mt-1">{errors.date}</p>}
               </div>
@@ -200,7 +457,7 @@ function BookingSection() {
                   name="timeSlot"
                   value={form.timeSlot}
                   onChange={handleChange}
-                  className={`w-full bg-card border rounded-lg px-4 py-3 text-sm outline-none transition-colors focus:border-primary ${errors.timeSlot ? "border-red-500/70" : "border-border"} ${form.timeSlot ? "text-white" : "text-muted-foreground/50"}`}
+                  className={`w-full bg-background border rounded-lg px-4 py-3 text-sm outline-none transition-colors focus:border-primary ${errors.timeSlot ? "border-red-500/70" : "border-border"} ${form.timeSlot ? "text-white" : "text-muted-foreground/50"}`}
                 >
                   <option value="" disabled>Select a slot</option>
                   {TIME_SLOTS.map(s => <option key={s} value={s} className="bg-card text-white">{s}</option>)}
@@ -209,18 +466,17 @@ function BookingSection() {
               </div>
             </div>
 
-            {/* Row 3 — Platform & Duration */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-xs font-display uppercase tracking-widest text-muted-foreground mb-2">
-                  <Layers className="w-3 h-3 inline mr-1" /> Platform *
+                  <Layers className="w-3 h-3 inline mr-1" /> Platform / Experience *
                 </label>
                 <select
                   data-testid="select-platform"
                   name="platform"
                   value={form.platform}
                   onChange={handleChange}
-                  className={`w-full bg-card border rounded-lg px-4 py-3 text-sm outline-none transition-colors focus:border-primary ${errors.platform ? "border-red-500/70" : "border-border"} ${form.platform ? "text-white" : "text-muted-foreground/50"}`}
+                  className={`w-full bg-background border rounded-lg px-4 py-3 text-sm outline-none transition-colors focus:border-primary ${errors.platform ? "border-red-500/70" : "border-border"} ${form.platform ? "text-white" : "text-muted-foreground/50"}`}
                 >
                   <option value="" disabled>Select platform</option>
                   {PLATFORMS.map(p => <option key={p} value={p} className="bg-card text-white">{p}</option>)}
@@ -236,7 +492,7 @@ function BookingSection() {
                   name="duration"
                   value={form.duration}
                   onChange={handleChange}
-                  className={`w-full bg-card border rounded-lg px-4 py-3 text-sm outline-none transition-colors focus:border-primary ${errors.duration ? "border-red-500/70" : "border-border"} ${form.duration ? "text-white" : "text-muted-foreground/50"}`}
+                  className={`w-full bg-background border rounded-lg px-4 py-3 text-sm outline-none transition-colors focus:border-primary ${errors.duration ? "border-red-500/70" : "border-border"} ${form.duration ? "text-white" : "text-muted-foreground/50"}`}
                 >
                   <option value="" disabled>Select duration</option>
                   {DURATIONS.map(d => <option key={d} value={d} className="bg-card text-white">{d}</option>)}
@@ -245,7 +501,6 @@ function BookingSection() {
               </div>
             </div>
 
-            {/* Row 4 — Game & Notes */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-xs font-display uppercase tracking-widest text-muted-foreground mb-2">
@@ -258,7 +513,7 @@ function BookingSection() {
                   value={form.game}
                   onChange={handleChange}
                   placeholder="e.g. Valorant, COD, Elden Ring…"
-                  className="w-full bg-card border border-border rounded-lg px-4 py-3 text-white text-sm placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-primary"
+                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-white text-sm placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-primary"
                 />
               </div>
               <div>
@@ -272,12 +527,11 @@ function BookingSection() {
                   value={form.notes}
                   onChange={handleChange}
                   placeholder="Anything specific you need…"
-                  className="w-full bg-card border border-border rounded-lg px-4 py-3 text-white text-sm placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-primary"
+                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-white text-sm placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-primary"
                 />
               </div>
             </div>
 
-            {/* WhatsApp note */}
             <div className="flex items-start gap-3 p-4 rounded-lg bg-green-500/5 border border-green-500/20">
               <MessageCircle className="w-5 h-5 text-green-400 mt-0.5 shrink-0" />
               <p className="text-sm text-green-300/80">
@@ -307,10 +561,10 @@ export default function Home() {
               Infinity<span className="text-primary">Gaming</span>
             </span>
           </div>
-          <div className="hidden md:flex items-center gap-8 font-display text-sm uppercase tracking-wider">
-            <a href="#arena" className="hover:text-primary transition-colors">The Arena</a>
-            <a href="#arsenal" className="hover:text-primary transition-colors">Arsenal</a>
+          <div className="hidden md:flex items-center gap-6 font-display text-sm uppercase tracking-wider">
+            <a href="#arena" className="hover:text-primary transition-colors">Arena</a>
             <a href="#games" className="hover:text-primary transition-colors">Games</a>
+            <a href="#pricing" className="hover:text-primary transition-colors">Pricing</a>
             <a href="#book" className="hover:text-primary transition-colors">Book</a>
             <a href="#intel" className="hover:text-primary transition-colors">Intel</a>
             <a href="https://wa.me/917067601040?text=Hi%20Infinity%20Gaming%2C%20I%20would%20like%20to%20book%20a%20gaming%20session" target="_blank" rel="noopener noreferrer">
@@ -340,7 +594,7 @@ export default function Home() {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-display font-black uppercase leading-[0.9] mb-6">
-              Step Into <br/>
+              Step Into <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary text-glow-cyan">The Dark</span>
             </h1>
 
@@ -379,7 +633,7 @@ export default function Home() {
                 <p className="text-cyan-200 font-display uppercase tracking-widest text-xl">Pro Gaming Setup</p>
                 <p className="text-slate-400 text-sm mt-2">High-Performance PC Rigs</p>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-5" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 z-20 flex items-center gap-4">
                 <div className="bg-background/80 backdrop-blur border border-border p-3 rounded-lg flex items-center gap-3">
                   <Cpu className="text-primary w-6 h-6" />
@@ -402,21 +656,21 @@ export default function Home() {
               Your <span className="text-secondary text-glow-purple">Arsenal</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Designed for the hardcore elite and the casual squad alike. Our specialized dark-themed basement sanctuary is engineered for total immersion.
+              Designed for the hardcore elite and the casual squad alike. Our specialized dark-themed arena is engineered for total immersion.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                icon: <MonitorPlay className="w-10 h-10 mb-4 text-primary" />,
-                title: "Pro-Grade PC Rigs",
-                desc: "Tournament-ready specifications capable of pushing maximum frames on ultra settings. No compromises."
+                icon: <SiPlaystation className="w-10 h-10 mb-4 text-primary" />,
+                title: "PS5 + PC Rigs",
+                desc: "PlayStation 5, high-end gaming PCs with RTX 4080, Racing Simulators, VR Cricket, and Pool Table — all under one roof."
               },
               {
                 icon: <Gamepad2 className="w-10 h-10 mb-4 text-secondary" />,
-                title: "Next-Gen Consoles",
-                desc: "Equipped with the latest hardware to ensure you experience next-generation titles exactly as intended."
+                title: "35+ Top Titles",
+                desc: "Solo campaigns, 2-player couch battles, and full multiplayer sessions across every genre."
               },
               {
                 icon: <Zap className="w-10 h-10 mb-4 text-primary" />,
@@ -444,103 +698,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Consoles & Games Section */}
-      <section id="games" className="py-24 relative bg-background">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-display font-bold uppercase mb-4">
-              Available <span className="text-accent text-glow-cyan">Hardware</span> & <span className="text-secondary">Titles</span>
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Premium gaming rigs and the latest consoles equipped with blockbuster titles and competitive esports games.
-            </p>
-          </div>
+      {/* Game Library */}
+      <GamesSection />
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Consoles */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-purple mb-8 bg-gradient-to-br from-purple-600 to-purple-900 h-80 flex items-center justify-center">
-                <div className="text-center">
-                  <Joystick className="w-20 h-20 text-purple-200 mx-auto mb-4 opacity-50" />
-                  <p className="text-purple-200 font-display uppercase tracking-wider">PlayStation • Xbox • Nintendo</p>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent" />
-              </div>
-              <h3 className="text-2xl font-display font-bold uppercase mb-6 flex items-center gap-2">
-                <Joystick className="text-secondary" /> Premium Hardware
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { name: "PlayStation 5", specs: "4K @ 120fps, Ultimate Gaming" },
-                  { name: "Xbox Series X", specs: "4K HDR, Gamepass Ready" },
-                  { name: "High-End Gaming PCs", specs: "RTX 4080 Ti, i9-13900K, 32GB RAM" },
-                  { name: "Nintendo Switch Pro", specs: "Portable Gaming Excellence" }
-                ].map((console, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="p-4 rounded-lg bg-card border border-border/50 hover:border-secondary/50 transition-colors"
-                  >
-                    <h4 className="font-display font-bold text-white text-sm mb-1">{console.name}</h4>
-                    <p className="text-xs text-muted-foreground">{console.specs}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+      {/* Pricing */}
+      <PricingSection />
 
-            {/* Games */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="relative rounded-2xl overflow-hidden border border-border/50 box-glow-cyan mb-8 bg-gradient-to-br from-cyan-500 to-blue-700 h-80 flex items-center justify-center">
-                <div className="text-center">
-                  <Zap className="w-20 h-20 text-cyan-200 mx-auto mb-4 opacity-50" />
-                  <p className="text-cyan-200 font-display uppercase tracking-wider">AAA Titles • Esports • Multiplayer</p>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent" />
-              </div>
-              <h3 className="text-2xl font-display font-bold uppercase mb-6 flex items-center gap-2">
-                <Zap className="text-primary" /> Featured Titles
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { title: "Call of Duty MW3", genre: "FPS • Competitive" },
-                  { title: "Counter-Strike 2", genre: "Tactical Shooter" },
-                  { title: "Valorant", genre: "Competitive FPS" },
-                  { title: "Cyberpunk 2077", genre: "Action RPG" },
-                  { title: "Elden Ring", genre: "Action RPG" },
-                  { title: "Fortnite Battle Royale", genre: "BR • Esports" },
-                  { title: "Palworld", genre: "Adventure • Multiplayer" },
-                  { title: "Street Fighter 6", genre: "Fighting • Arcade" }
-                ].map((game, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="p-4 rounded-lg bg-card border border-border/50 hover:border-primary/50 transition-colors"
-                  >
-                    <h4 className="font-display font-bold text-white text-sm mb-1">{game.title}</h4>
-                    <p className="text-xs text-muted-foreground">{game.genre}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Booking Section */}
+      {/* Booking */}
       <BookingSection />
 
       {/* Location & Contact Section */}
@@ -561,7 +725,6 @@ export default function Home() {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Location Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -574,8 +737,8 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-display font-bold text-white mb-2">Location</h3>
               <p className="text-muted-foreground text-sm mb-4">
-                MP Nagar, Zone-II<br/>
-                Bhopal<br/>
+                MP Nagar, Zone-II<br />
+                Bhopal<br />
                 <span className="text-xs text-primary/70">23.2329°N, 77.4364°E</span>
               </p>
               <a
@@ -588,7 +751,6 @@ export default function Home() {
               </a>
             </motion.div>
 
-            {/* Hours Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -601,13 +763,12 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-display font-bold text-white mb-2">Hours</h3>
               <p className="text-muted-foreground text-sm mb-4">
-                Open Daily<br/>
-                <span className="text-primary font-bold text-lg">10:00 AM — 11:00 PM</span><br/>
+                Open Daily<br />
+                <span className="text-primary font-bold text-lg">10:00 AM — 11:00 PM</span><br />
                 <span className="text-xs">Walk-ins Welcome</span>
               </p>
             </motion.div>
 
-            {/* Contact Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -646,7 +807,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ChatBot */}
       <ChatBot />
 
       {/* Footer */}
